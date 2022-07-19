@@ -1,0 +1,8 @@
+{
+  "alunos":[
+    { "ra":"101235","nome":"Paulo Souza","email":"paulo.souza@mydomain.com","cpf":"121.999.999-99" },
+    { "ra":"101687","nome":"João Silva","email":"joao.silva@mydomain.com","cpf":"122.999.999-99" },
+    { "ra":"101365","nome":"Marina Miranda","email":"marina.miranda@mydomain.com","cpf":"123.999.999-99" },
+    { "ra":"101299","nome":"Mauricio Souza","email":"mauricio.souza@mydomain.com","cpf":"124.999.999-99" }
+  ]
+}
