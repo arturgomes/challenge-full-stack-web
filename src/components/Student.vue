@@ -2,54 +2,39 @@
   <div v-if="$route.params.ra" class="edit-form py-3">
     <p class="headline">Editar Aluno</p>
     <v-form ref="form" lazy-validation>
-      <v-container fluid>
-        <v-row>
-          <v-col cols="2">
-            <v-subheader>Nome</v-subheader>
-          </v-col>
-          <v-col cols="8">
-            <v-text-field v-model="currentStudent.name" :rules="[(v) => !!v || 'Nome é obrigatório']"
-              label="Informe o Nome Completo" required outlined>
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="2">
-            <v-subheader>Email</v-subheader>
-          </v-col>
-          <v-col cols="8">
-            <v-text-field v-model="currentStudent.email" :rules="[(v) => !!v || 'Email é obrigatório']"
-              label="Informe apenas um email" required outlined>
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="2">
-            <v-subheader>RA</v-subheader>
-          </v-col>
-          <v-col cols="8">
-            <v-text-field v-model="currentStudent.ra" :rules="[(v) => !!v || 'RA é obrigatório']"
-              label="Informe o registro acadêmico" disabled outlined>
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="2">
-            <v-subheader>CPF</v-subheader>
-          </v-col>
-          <v-col cols="8">
-            <v-text-field v-model="currentStudent.cpf" :rules="[(v) => !!v || 'CPF é obrigatório']"
-              label="Informe o número do documento" disabled outlined>
-            </v-text-field>
-          </v-col>
-        </v-row>
-      </v-container>
+      <div class="form_container">
+        <div class="form_container__row">
+          <v-subheader class="form_container__row__desc" >Nome</v-subheader>
+          <v-text-field 
+            v-model="currentStudent.name" 
+            :rules="[(v) => !!v || 'Nome é obrigatório']"
+            placeholder="Informe o Nome Completo" required class="form_container__row__field caption">
+          </v-text-field>
+        </div>
+        <div class="form_container__row">
+          <v-subheader class="form_container__row__desc" >Email</v-subheader>
+          <v-text-field 
+            v-model="currentStudent.email" 
+            :rules="[(v) => !!v || 'Email é obrigatório']"
+            placeholder="Informe apenas um email"  
+            required class="form_container__row__field caption">
+          </v-text-field>
+        </div>
+        <div class="form_container__row">
+          <v-subheader class="form_container__row__desc" >RA</v-subheader>
+          <v-text-field v-model="currentStudent.ra" disabled class="form_container__row__field caption"> </v-text-field>
+        </div>
+        <div class="form_container__row">
+          <v-subheader class="form_container__row__desc" >CPF</v-subheader>
+          <v-text-field v-model="currentStudent.cpf" disabled class="form_container__row__field caption">
+          </v-text-field>
+        </div>
+      </div>
       <v-container class="button_actions">
-
-        <v-btn color="error" small class="mr-2" @click="goBack">
+        <v-btn color="grey lighten-5" small class="mr-2" @click="goBack">
           Cancelar
         </v-btn>
-        <v-btn color="success" small @click="updateStudent">
+        <v-btn color="grey" small @click="updateStudent">
           Atualizar
         </v-btn>
       </v-container>
@@ -59,75 +44,62 @@
   <div v-else class="edit-form py-3">
     <p class="headline">Cadastrar Aluno</p>
     <div v-if="!submitted">
-
       <v-form ref="form" lazy-validation>
-        <v-container fluid>
-          <v-row>
-            <v-col cols="2">
-              <v-subheader>Nome</v-subheader>
-            </v-col>
-            <v-col cols="8">
-              <v-text-field v-model="currentStudent.name" :rules="[(v) => !!v || 'Nome é obrigatório']"
-                label="Informe o Nome Completo" required outlined>
-              </v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="2">
-              <v-subheader>Email</v-subheader>
-            </v-col>
-            <v-col cols="8">
-              <v-text-field v-model="currentStudent.email" :rules="[(v) => !!v || 'Email é obrigatório']"
-                label="Informe apenas um email" required outlined>
-              </v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="2">
-              <v-subheader>RA</v-subheader>
-            </v-col>
-            <v-col cols="8">
-              <v-text-field v-model="currentStudent.ra" :rules="[(v) => !!v || 'RA é obrigatório']"
-                label="Informe o registro acadêmico" outlined>
-              </v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="2">
-              <v-subheader>CPF</v-subheader>
-            </v-col>
-            <v-col cols="8">
-              <v-text-field v-model="currentStudent.cpf" :rules="[(v) => !!v || 'CPF é obrigatório']"
-                label="Informe o número do documento" outlined>
-              </v-text-field>
-            </v-col>
-          </v-row>
-        </v-container>
+        <div class="form_container">
+          <div class="form_container__row">
+            <v-subheader class="form_container__row__desc" >Nome</v-subheader>
+            <v-text-field class="form_container__row__field caption"
+            v-model="currentStudent.name"
+              :rules="[(v) => !!v || 'Nome é obrigatório']" 
+              label="Informe o Nome Completo" required>
+            </v-text-field>
+          </div>
+          <div class="form_container__row">
+            <v-subheader class="form_container__row__desc" >Email</v-subheader>
+            <v-text-field v-model="currentStudent.email" :rules="[(v) => !!v || 'Email é obrigatório']"
+              label="Informe apenas um email" required class="form_container__row__field  caption">
+            </v-text-field>
+          </div>
+          <div class="form_container__row">
+            <v-subheader class="form_container__row__desc" >RA</v-subheader>
+            <v-text-field v-model="currentStudent.ra" :rules="[(v) => !!v || 'RA é obrigatório']"
+              label="Informe o registro acadêmico" class="form_container__row__field caption">
+            </v-text-field>
+          </div>
+          <div class="form_container__row">
+            <v-subheader class="form_container__row__desc" >CPF</v-subheader>
+            <v-text-field v-model="currentStudent.cpf" :rules="[(v) => !!v || 'CPF é obrigatório']"
+              label="Informe o número do documento" class="form_container__row__field caption">
+            </v-text-field>
+          </div>
+        </div>
 
       </v-form>
       <v-container class="button_actions">
 
-        <v-btn color="error" small class="mr-2" @click="goBack">
+        <v-btn color="grey lighten-5" small class="mr-2" @click="goBack">
           Cancelar
         </v-btn>
-        <v-btn color="success" small @click="saveStudent">
+        <v-btn color="grey" small @click="saveStudent">
           Cadastrar
         </v-btn>
       </v-container>
     </div>
     <div v-else>
-      <v-card class="mx-auto">
+      <v-card class="mx-auto success_card">
         <v-card-name>
           Enviado com sucesso!
         </v-card-name>
         <v-card-subtitle>
-          Clique no botão para cadastrar novo aluno.
+          Você deseja cadastrar novo aluno?
         </v-card-subtitle>
         <v-card-actions>
-           <v-btn color="error" small class="mr-2" @click="goBack">
-          Cancelar
-        </v-btn>
-          <v-btn color="success" @click="newStudent">Novo Aluno</v-btn>
+          <v-btn color="grey lighten-5" small class="mr-2" @click="goBack">
+            Cancelar
+          </v-btn>
+          <v-btn color="grey" small class="mr-2" @click="newStudent">
+            Novo Aluno
+          </v-btn>
         </v-card-actions>
       </v-card>
     </div>
@@ -185,7 +157,7 @@ export default {
       };
       StudentDataService.create(data)
         .then((response) => {
-          this.student.ra = response.data.ra;
+          if(response.data.message === "student created successfully")
           this.submitted = true;
         })
         .catch((e) => {
@@ -207,7 +179,7 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="scss">
 .edit-form {
   padding: 20px;
   margin: auto;
@@ -216,6 +188,32 @@ export default {
 .button_actions {
   display: flex;
   justify-content: right;
-  gap: 10px;
+  padding:0;
+}
+
+.form_container {
+  &__row {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    display: flex;
+    padding-right:20px;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-between;
+    line-height: 40px;
+    &__desc {
+      width: 20%;
+      margin-right:20px;
+    }
+    &__field {
+      width: 300px;
+      display: inline-block;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  }
+}
+.success_card{
+  padding:20px;
 }
 </style>
