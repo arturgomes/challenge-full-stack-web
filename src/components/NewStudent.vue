@@ -3,28 +3,54 @@
     <p class="headline">Cadastro de Aluno</p>
     <div v-if="!submitted">
       <v-form ref="form" lazy-validation>
-        <v-text-field
-          v-model="student.name"
-          :rules="[(v) => !!v || 'Name is required']"
-          label="Name"
-          required
-        ></v-text-field>
-        <v-text-field
-          v-model="student.email"
-          :rules="[(v) => !!v || 'Email is required']"
-          label="Email"
-          required
-        ></v-text-field>
-        <v-text-field
-          v-model="student.cpf"
-          :rules="[(v) => !!v || 'CPF is required']"
-          label="CPF"
-          required
-        ></v-text-field>
+        <v-container fluid>
+          <v-row class="field" justify>
+            <v-col cols="2" >
+              <v-subheader>Nome</v-subheader>
+            </v-col>
+            <v-col cols="8">
+              <v-text-field v-model="student.name" :rules="[(v) => !!v || 'Nome é obrigatório']"
+                label="Informe o Nome Completo" required outlined>
+              </v-text-field>
+            </v-col>
+          </v-row>
+           <v-row>
+            <v-col cols="2">
+              <v-subheader>Email</v-subheader>
+            </v-col>
+            <v-col cols="8">
+               <v-text-field v-model="student.email" :rules="[(v) => !!v || 'Email é obrigatório']" label="Informe apenas um email" required outlined>
+        </v-text-field>
+            </v-col>
+          </v-row>
+           <v-row>
+            <v-col cols="2">
+              <v-subheader>RA</v-subheader>
+            </v-col>
+            <v-col cols="8">
+             <v-text-field v-model="student.ra" :rules="[(v) => !!v || 'RA é obrigatório']" label="Informe o registro acadêmico" required outlined>
+        </v-text-field>
+            </v-col>
+          </v-row>
+           <v-row>
+            <v-col cols="2">
+              <v-subheader>CPF</v-subheader>
+            </v-col>
+            <v-col cols="8">
+              <v-text-field v-model="student.cpf" :rules="[(v) => !!v || 'CPF é obrigatório']" label="Informe o número do documento" required outlined>
+        </v-text-field>
+            </v-col>
+          </v-row>
+        </v-container>
+        
       </v-form>
-      <v-btn color="primary" @click="goBack">Cancelar</v-btn>
+        <v-container class="button_actions">
+
+          <v-btn color="primary" @click="goBack">Cancelar</v-btn>
           <v-btn color="success" @click="saveStudent">Salvar</v-btn>
-   </div>
+        </v-container>
+
+    </div>
     <div v-else>
       <v-card class="mx-auto">
         <v-card-name>
@@ -47,20 +73,24 @@ export default {
   data() {
     return {
       student: {
-        ra: null,
+        ra: "",
         name: "",
         email: "",
+        cpf: "",
       },
       submitted: false,
     };
   },
   methods: {
     saveStudent() {
-      var data = {student:{
-        name: this.student.name,
-        email: this.student.email,
-        cpf: this.student.cpf,
-      }};
+      var data = {
+        student: {
+          ra: this.student.ra,
+          name: this.student.name,
+          email: this.student.email,
+          cpf: this.student.cpf,
+        }
+      };
       StudentDataService.create(data)
         .then((response) => {
           this.student.ra = response.data.ra;
@@ -75,14 +105,19 @@ export default {
       this.submitted = false;
       this.student = {};
     },
-    goBack(){
+    goBack() {
       this.$router.push({ name: "list" });
     }
   },
 };
 </script>
-<style>
+<style lang="scss">
 .submit-form {
-  max-width: 300px;
+  max-width: 600px;
+}
+.button_actions{
+  display:flex;
+  justify-content: right;
+  gap:10px;
 }
 </style>
