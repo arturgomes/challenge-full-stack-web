@@ -10,17 +10,12 @@ const routes: Array<RouteConfig> = [
     path: '/',
     alias: '/list',
     name: 'list',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ListStudentView.vue')
+    component: () => import(/* webpackChunkName: "ListStudentView" */ '../views/ListStudentView.vue')
   },
   {
-    path: "/students/:id",
+    path: "/students/:ra",
     name: "student-details",
-    component: () => import("../views/StudentView.vue")
-  },
-  {
-    path: "/add",
-    name: "add",
-    component: () => import("../views/NewStudentView.vue")
+    component: () => import(/* webpackChunkName: "StudentView" */ "../views/StudentView.vue")
   },
   {
     path: '/about',

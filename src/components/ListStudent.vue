@@ -6,12 +6,15 @@
         </v-text-field>
       </div>
       <div class="top_bar__store">
-        <v-btn @click="goToNewStudent()" large primary>Cadastrar Aluno</v-btn>
+        <v-btn @click="newStudent()" large primary>Cadastrar Aluno</v-btn>
       </div>
     </div>
     <div class="container_students">
-      <v-data-table :headers="headers" :items="students" :search="search" disable-pagination
-        :hrae-default-footer="true">
+      <v-data-table :headers="headers" 
+      :items="students" 
+      :search="search" 
+      disable-pagination
+      :hide-default-footer="true">
         <template v-slot:[`item.actions`]="{ item }">
           <v-icon small class="mr-2" @click="editStudent(item.ra)">mdi-pencil</v-icon>
           <v-icon small @click="deleteStudent(item.ra)">mdi-delete</v-icon>
@@ -43,7 +46,6 @@ export default {
       StudentDataService.getAll()
         .then((response) => {
           this.students = response.data.map(this.getDisplayStudent);
-          console.log(this.students);
         })
         .catch((e) => {
           console.log(e);
@@ -55,7 +57,6 @@ export default {
     removeAllStudents() {
       StudentDataService.deleteAll()
         .then((response) => {
-          console.log(response.data);
           this.refreshList();
         })
         .catch((e) => {
@@ -66,7 +67,6 @@ export default {
       StudentDataService.findByTitle(this.name)
         .then((response) => {
           this.students = response.data.map(this.getDisplayStudent);
-          console.log(response.data);
         })
         .catch((e) => {
           console.log(e);
@@ -74,6 +74,9 @@ export default {
     },
     editStudent(ra) {
       this.$router.push({ name: "student-details", params: { ra: ra } });
+    },
+    newStudent() {
+      this.$router.push({ name: "student-details", params: { ra: null } });
     },
     deleteStudent(ra) {
       StudentDataService.delete(ra)
@@ -90,9 +93,6 @@ export default {
         name: student.name,
         cpf: student.cpf,
       };
-    },
-    goToNewStudent(){
-      this.$router.push({ name: "add" });
     }
   },
   mounted() {
