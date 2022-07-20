@@ -1,17 +1,26 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="Ola Vue" />
-  </div>
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+    >
+      <!--  -->
+    </v-navigation-drawer>
+
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Application</v-toolbar-title>
+    </v-app-bar>
+
+    <v-main>
+      <!--  -->
+    </v-main>
+  </v-app>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-
-export default defineComponent({
-  name: "HomeView",
-  components: {
-    HelloWorld,
-  },
-});
+<script>
+  export default {
+    data: () => ({ drawer: null }),
+  }
 </script>
