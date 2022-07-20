@@ -1,32 +1,17 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer 
-    v-model="drawer"
-    app>
+  <v-app>
+    <v-navigation-drawer v-model="drawer" app>
       <v-list-item>
         <v-list-item-content>
-         <v-img
-          lazy-src="@/assets/logo-grupoa.png"
-          max-height="150"
-          max-width="250"
-          position="center"
-          src="@/assets/logo-grupoa.png"
-        ></v-img>
+          <v-img lazy-src="@/assets/logo-grupoa.png" max-height="150" max-width="250" position="center"
+            src="@/assets/logo-grupoa.png"></v-img>
         </v-list-item-content>
       </v-list-item>
 
       <v-divider></v-divider>
 
-      <v-list
-        dense
-        nav
-      >
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          :to="item.to"
-          link
-        >
+      <v-list dense nav>
+        <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -37,7 +22,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app >
+    <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Módulo Acadêmico</v-toolbar-title>
@@ -51,14 +36,14 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({ 
-      drawer: null ,
-       items: [
-          { title: 'Alunos', icon: 'mdi-account-school' , to:'/'},
-          { title: 'Sobre', icon: 'mdi-help-box' , to:'/about'},
-        ],
-        }),
-  }
-  
+export default {
+  data: () => ({
+    drawer: null,
+    items: [
+      { title: 'Alunos', icon: 'mdi-account-school', to: '/' },
+      { title: 'Sobre', icon: 'mdi-help-box', to: '/about' },
+    ],
+  }),
+}
+
 </script>
