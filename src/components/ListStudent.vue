@@ -1,43 +1,40 @@
 <template>
   <div>
-
     <div class="top_bar">
       <div class="top_bar__search">
         <v-text-field v-model="search" append-icon="mdi-magnify" label="Digite sua busca" single-line hide-details>
         </v-text-field>
       </div>
       <div class="top_bar__store">
-        <v-btn large primary> Cadastrar Aluno</v-btn>
+        <v-btn @click="goToNewStudent()" large primary>Cadastrar Aluno</v-btn>
       </div>
     </div>
     <div class="container_students">
-      <v-data-table :headers="headers" :items="alunos"  
-          disable-pagination
-          :hide-default-footer="true" :search="search" class="elevation-1">
-          <template v-slot:[`item.actions`]="{ item }">
-            <v-icon small class="mr-2" @click="editStudent(item.id)">mdi-pencil</v-icon>
-            <v-icon small @click="deleteStudent(item.id)">mdi-delete</v-icon>
-          </template>
+      <v-data-table :headers="headers" :items="students" :search="search" disable-pagination
+        :hrae-default-footer="true">
+        <template v-slot:[`item.actions`]="{ item }">
+          <v-icon small class="mr-2" @click="editStudent(item.ra)">mdi-pencil</v-icon>
+          <v-icon small @click="deleteStudent(item.ra)">mdi-delete</v-icon>
+        </template>
       </v-data-table>
     </div>
+
   </div>
-
 </template>
-
-<script lang="ts">
+<script>
 import StudentDataService from "../services/StudentDataService";
 export default {
   name: "students-list",
   data() {
     return {
-      search:'',
+      search: '',
       students: [],
       name: "",
       headers: [
-        { text: "Title", align: "start", sortable: false, value: "name" },
-        { text: "Description", value: "email", sortable: false },
-        { text: "Status", value: "status", sortable: false },
-        { text: "Actions", value: "actions", sortable: false },
+        { text: "Registro Acadêmico", align: "start", sortable: true, value: "ra" },
+        { text: "Nome", value: "name", sortable: true },
+        { text: "CPF", value: "cpf", sortable: true },
+        { text: "Ações", value: "actions", sortable: false },
       ],
     };
   },
@@ -46,7 +43,7 @@ export default {
       StudentDataService.getAll()
         .then((response) => {
           this.students = response.data.map(this.getDisplayStudent);
-          console.log(response.data);
+          console.log(this.students);
         })
         .catch((e) => {
           console.log(e);
@@ -91,9 +88,12 @@ export default {
       return {
         ra: student.ra,
         name: student.name,
-        email:  student.email,
+        cpf: student.cpf,
       };
     },
+    goToNewStudent(){
+      this.$router.push({ name: "add" });
+    }
   },
   mounted() {
     this.retrieveStudents();
@@ -116,7 +116,8 @@ export default {
     gap: 10px;
   }
 }
-.container_students{
-  padding:20px;
+
+.container_students {
+  padding: 20px;
 }
 </style>
