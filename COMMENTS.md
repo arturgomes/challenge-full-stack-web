@@ -4,16 +4,18 @@
 
 The sources for the API can be found [here](aca-api). It requires Docker and Node.JS.
 
+Any request made from the client goes to the API and from there, TypeORM is used instead of directly querying the database. A draft of a sequence diagram illustrates such and interaction.  
+
 ```mermaid
   sequenceDiagram
 [FrontEnd]->>[Node and Express]: student CRUD request 
 
-[Node and Express]->>[PostgreSQL on Docker]: TypeORM abstraction
-[PostgreSQL on Docker]-->>[Node and Express]: JSON response
+[Node and Express]->>[PostgreSQL on Docker]: TypeORM abstraction query
+[PostgreSQL on Docker]-->>[Node and Express]: DB response
 [Node and Express]->>[FrontEnd]: API response to student CRUD 
 
 ```
-
+The `student CRUD request` can be seen as one of the API requests described in the routes below.
 ### API Routes for the Application
 
 | Method | Route                 | Description                                              |
@@ -24,6 +26,8 @@ The sources for the API can be found [here](aca-api). It requires Docker and Nod
 |POST    | `/student/update/:ra` |  Edit a student matching a provided `ra`                 |
 |DELETE  | `/student/:ra`        | Delete a student matching a provided `ra`                |
 
+
+Next, I present what I did and what could be done with a bit more of time.
 
 ### What I did
 
