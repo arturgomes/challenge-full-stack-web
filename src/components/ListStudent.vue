@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="top_bar">
-      <div class="top_bar__search">
+      <div class="top_bar__search"  v-if="students.length> 0">
         <v-text-field v-model="search" append-icon="mdi-magnify" label="Digite sua busca" single-line hide-details>
         </v-text-field>
       </div>
@@ -10,16 +10,36 @@
       </div>
     </div>
     <div class="container_students">
-      <v-data-table :headers="headers" 
-      :items="students" 
-      :search="search" 
-      disable-pagination
-      :hide-default-footer="true">
+      <div v-if="students.length> 0">
+        <v-data-table :headers="headers" :items="students" :search="search" disable-pagination
+        :hide-default-footer="true">
         <template v-slot:[`item.actions`]="{ item }">
           <v-icon small class="mr-2" @click="editStudent(item.ra)">mdi-pencil</v-icon>
-          <v-icon small @click="deleteStudent(item.ra)">mdi-delete</v-icon>
+          <v-dialog v-model="dialog" max-width="290">
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon v-bind="attrs" v-on="on" small @click="dialog = true">mdi-delete</v-icon>
+            </template>
+            <v-card>
+              <v-card-title class="body-2">
+                Deseja remover esse registro?
+              </v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="gray darken-1" text @click="dialog = false">
+                  Cancelar
+                </v-btn>
+                <v-btn color="gray darken-1" text @click="deleteStudent(item.ra); dialog = false">
+                  Confirmar
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
         </template>
       </v-data-table>
+      </div>
+      <div v-else><p>Nenhum registro acadêmico cadastrado</p></div>
+    
     </div>
 
   </div>
@@ -33,6 +53,7 @@ export default {
       search: '',
       students: [],
       name: "",
+      dialog: false,
       headers: [
         { text: "Registro Acadêmico", align: "start", sortable: true, value: "ra" },
         { text: "Nome", value: "name", sortable: true },
