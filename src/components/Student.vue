@@ -35,7 +35,7 @@
           Cancelar
         </v-btn>
         <v-btn color="grey" small @click="updateStudent">
-          Atualizar
+          Salvar
         </v-btn>
       </v-container>
     </v-form>
@@ -43,7 +43,7 @@
   </div>
   <div v-else class="edit-form py-3">
     <p class="headline">Cadastrar Aluno</p>
-    <div v-if="!submitted">
+    <div >
       <v-form ref="form" lazy-validation>
         <div class="form_container">
           <div class="form_container__row">
@@ -81,28 +81,11 @@
           Cancelar
         </v-btn>
         <v-btn color="grey" small @click="saveStudent">
-          Cadastrar
+          Salvar
         </v-btn>
       </v-container>
     </div>
-    <div v-else>
-      <v-card class="mx-auto success_card">
-        <v-card-name>
-          Enviado com sucesso!
-        </v-card-name>
-        <v-card-subtitle>
-          Você deseja cadastrar novo aluno?
-        </v-card-subtitle>
-        <v-card-actions>
-          <v-btn color="grey lighten-5" small class="mr-2" @click="goBack">
-            Cancelar
-          </v-btn>
-          <v-btn color="grey" small class="mr-2" @click="newStudent">
-            Novo Aluno
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </div>
+   
     <p class="mt-3">{{ message }}</p>
   </div>
 </template>
@@ -140,7 +123,7 @@ export default {
       const data = { name: this.currentStudent.name, email: this.currentStudent.email }
       StudentDataService.update(this.currentStudent.ra, data)
         .then((response) => {
-          this.message = "The student was updated successfully!";
+          this.message = "Aluno atualizado com sucesso!";
         })
         .catch((e) => {
           console.log(e);
@@ -159,6 +142,7 @@ export default {
         .then((response) => {
           if(response.data.message === "student created successfully")
           this.submitted = true;
+          this.message="Aluno criado com sucesso"
         })
         .catch((e) => {
           console.log(e);
