@@ -4,6 +4,13 @@
 
 The sources for the API can be found [here](aca-api). It requires Docker and Node.JS.
 
+```mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;
+```
 
 ### API Routes for the Application
 
