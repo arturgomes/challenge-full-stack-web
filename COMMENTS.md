@@ -5,11 +5,13 @@
 The sources for the API can be found [here](aca-api). It requires Docker and Node.JS.
 
 ```mermaid
-  graph TD;
-      A-->B;
-      A-->C;
-      B-->D;
-      C-->D;
+  sequenceDiagram
+FrontEnd->>Node+Express: student CRUD request 
+
+Node+Express->>PostgreSQL on Docker: TypeORM abstraction
+PostgreSQL on Docker-->>Node+Express: JSON response
+Node+Express->>FrontEnd: API response to student CRUD 
+
 ```
 
 ### API Routes for the Application
