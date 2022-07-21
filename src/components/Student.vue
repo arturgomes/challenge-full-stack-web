@@ -1,4 +1,7 @@
 <template>
+  <!-- the component switches from creating to editing depending  -->
+  <!-- on the `ra` route params -->
+  <!-- if it is not null, then a student entry can be edited -->
   <div v-if="$route.params.ra" class="edit-form py-3">
     <p class="headline">Editar Aluno</p>
     <v-form ref="form" lazy-validation>
@@ -41,6 +44,7 @@
     </v-form>
     <p class="mt-3">{{ message }}</p>
   </div>
+  <!-- if 'ra' is null, then a new student can be added  -->
   <div v-else class="edit-form py-3">
     <p class="headline">Cadastrar Aluno</p>
     <div >
