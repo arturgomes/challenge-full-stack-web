@@ -10,7 +10,7 @@ The sources for the API can be found [here](aca-api). It requires Docker and Nod
 
 [Node and Express]->>[PostgreSQL on Docker]: TypeORM abstraction
 [PostgreSQL on Docker]-->>[Node and Express]: JSON response
-[Node+Express]->>[FrontEnd]: API response to student CRUD 
+[Node and Express]->>[FrontEnd]: API response to student CRUD 
 
 ```
 
