@@ -31,17 +31,17 @@ Next, I present what I did and what could be done with a bit more of time.
 
 ### What I did
 
-- I wrote a simple API using Node+Express
+- I wrote a simple API using Node with [Express](https://www.npmjs.com/package/express)
 - I used Docker in order to create an instance of Postgres
-- I used TypeORM for manipulating data from Postgres using the OO paradigm
-  - In case of using MongoDB, I'd go for Mongoose
-
+- I used [TypeORM](https://www.npmjs.com/package/typeorm) for manipulating data from Postgres using the OO paradigm
+  - In case of using MongoDB, I'd go for [Mongoose](https://www.npmjs.com/package/mongoose)
+- I used [Yup](https://www.npmjs.com/package/yup) for parsing and validating the data coming from `request` in the API.
 ### What I could've done if I had more time
 
-- I could use JWT for securing the connection, however, it would involve adding a login page, 
+- I could use [JWT](https://www.npmjs.com/package/jwt) for securing the connection, however, it would involve adding a login page, 
 and bit more of work for securing the routes. And as it was not in the requirements, I'm just commenting out.
 
-- I wish I had more time for providing some unit tests. In order to do so, I could use Jest.
+- I wish I had more time for providing some unit tests. In order to do so, I could use [Jest](https://www.npmjs.com/package/jest).
 
 ## Interface in Vue.JS
 
@@ -49,7 +49,7 @@ Giving that this was my first experience with Vue.JS, I did enjoy the challenge,
 
 ### What I did
 
-- I used Vuetify as much as I could
+- I used [Vuetify](https://vuetifyjs.com/en/) as much as I could
 - The app use a already available skeleton of the page, with left drawer with a sandwich button.
 - I used CSS a few times for a bit of adjustments in the layout, but not too much
 - For the modal, I followed an example from the Vue.JS docs.
