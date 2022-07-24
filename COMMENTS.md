@@ -35,32 +35,30 @@ Next, I present what I did and what could be done with a bit more of time.
 - I used Docker in order to create an instance of Postgres
 - I used TypeORM for manipulating data from Postgres using the OO paradigm
   - In case of using MongoDB, I'd go for Mongoose
-- I didn't go too far on third libraries - my real challenge was to learn Vue
-  - (1) The API does not perform fancy input validation (that could be done using Joi or Yup) (see next section.)
-  - (2) I didn't use sessions, with authentication and tokens
 
 ### What I could've done if I had more time
-(1) I would use Yup or Joi for validating the data provided from requests. 
-  - It would suppress as much error as possible
 
-(2) I could use JWT for securing the connection, however, it would involve adding a login page, 
+- I could use JWT for securing the connection, however, it would involve adding a login page, 
 and bit more of work for securing the routes. And as it was not in the requirements, I'm just commenting out.
 
-(3) I wish I had more time for providing some unit tests. In order to do so, I could use Jest.
+- I wish I had more time for providing some unit tests. In order to do so, I could use Jest.
 
 ## Interface in Vue.JS
 
-Giving that this was my first experience with Vue.JS, I did enjoy the challenge, although, I must confess I wish I had more time to learn Vue.JS and improve my code.
+Giving that this was my first experience with Vue.JS, I did enjoy the challenge, although I wish I had more time to learn Vue.JS and improve my code.
+
 ### What I did
+
 - I used Vuetify as much as I could
 - The app use a already available skeleton of the page, with left drawer with a sandwich button.
 - I used CSS a few times for a bit of adjustments in the layout, but not too much
 - For the modal, I followed an example from the Vue.JS docs.
+- If no items are found after API request, a "Nenhum registro acadêmico cadastrado" message is displayed and the search bar is hidden.
+- Added a field validation with regex for CPF and Email to the frontend:
+  - For the CPF, we are able to capture the ###.###.###-## pattern, no matter how the user inputs it (with or without dots and dash)
+  - For the email, the user must pay attention to the forbidden characters, followed by the `@` and then with an accepted domain (using the regex)
 
 ### What I could've done if I had more time
-- I could not understand much of Vuetify manual styling with CSS, and therefore I could not reproduce the design of the form inputs as requested.
+
+- I could not understand too much of Vuetify manual styling with CSS, and therefore I could not reproduce the design of the form inputs as requested.
   - I'm don't use much of UI libraries in my codes. I'm more used to have a Figma design for a system and develop components tailored for that system.
-- I wish I could use some regex in the input fields for validating a CPF and email address. But I wanted to understand what's under the hood intead of going for some stackoverflow answer that would not help me to learn, but just to have the anser right away.
-  - I believe I could use some prop for key pressing (on key up)  and call a function that checks if the string matches the CPF or even email. At least, that's something I'd do using React or Angular.
-- From the above, I also didn't work on providing meaningful warnings for validating fields. The only one used is the `required` props from the `v-text-field` component.
-- I could also check (in the frontend) for any field not provided, that could lead to any miss calculation from the API. But again, it would require a bit more of time.
