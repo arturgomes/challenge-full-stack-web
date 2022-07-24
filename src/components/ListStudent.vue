@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- top bar for search and storing new student -->
+    <p class="header_title">Consulta de Alunos</p>
     <div class="top_bar">
       <div class="top_bar__search" v-if="students.length > 0">
         <v-text-field v-model="search" append-icon="mdi-magnify" label="Digite sua busca" single-line hide-details>
@@ -171,4 +172,10 @@ export default {
 .container_students {
   padding: 20px;
 }
+.header_title{
+  padding: 20px 20px 0 20px;
+  font-size: 24px;
+  margin-top:-10px;
+}
+
 </style>
