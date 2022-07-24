@@ -62,3 +62,24 @@ Giving that this was my first experience with Vue.JS, I did enjoy the challenge,
 
 - I could not understand too much of Vuetify manual styling with CSS, and therefore I could not reproduce the design of the form inputs as requested.
   - I'm don't use much of UI libraries in my codes. I'm more used to have a Figma design for a system and develop components tailored for that system.
+
+# To run the frontend
+
+## 1 - Project setup
+```
+yarn install
+```
+or
+```
+npm run install
+```
+
+then, run it in development mode.
+### 2 - Compiles and hot-reloads for development
+```
+yarn serve
+```
+or
+```
+npm run serve
+```
